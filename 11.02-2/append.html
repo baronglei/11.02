@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+		    #inp{
+		    	width: 200px;
+		    }
+			#tex{
+				width: 200px;
+				height: 100px;
+				resize: none;
+				margin-top: 20px;
+			}
+			a{
+				text-decoration: none;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$.ajax({
+					type:"post",
+					url:"http://localhost:3000/item/append",
+					data:{},
+					success:function(e){
+						for(var i in e){
+							$('body').append('<h1>'+e[i].name+'<p>'+e[i].datail+'</p></h1>')
+						}
+					}
+				});
+				$('#btn').click(function() {
+					var a = $("#inp").val();
+					var b = $("#tex").val();
+					$.ajax({
+						type: "post",
+						url: "http://localhost:3000/item/datail",
+						data:{a:a,b:b},
+						success: function(e) {
+							$("body").append('<h1>'+a+'</a></h1>')
+							$("body").append('<p>'+b+'</p>')
+						}
+					});
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<form action="" method="post">
+			<input type="text" name="" id="inp" value="" /><br />
+			<textarea name="" rows="" cols="" id="tex"></textarea><br />
+			<button id="btn" ><a href="../11.02-1/datail.html">submit</a></button>
+		</form>
+	</body>
+
+</html>
